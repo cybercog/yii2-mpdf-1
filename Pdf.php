@@ -45,10 +45,17 @@ class Pdf extends Component
     public $marginHeader = 9;
     public $marginFooter = 9;
     public $orientation = self::ORIENTATION_PORTRAIT;
+    public $customTtfFontPath;
+    public $fontData;
+    public $additionalFontData = [];
 
     public function init()
     {
         parent::init();
+        if(isset($this->customTtfFontPath) && !defined('_MPDF_TTFONTPATH')){
+            define('_MPDF_TTFONTPATH',$this->customTtfFontPath);
+        }
+
         //$this->setGenerator();
     }
 
@@ -67,6 +74,10 @@ class Pdf extends Component
             $this->marginFooter,
             $this->orientation
         );
+        if(isset($this->fontData)){
+            $this->generator->fontdata = $this->fontData;
+        }
+        $this->generator->fontdata = array_merge($this->generator->fontdata,$this->additionalFontData);
     }
 
     /**
