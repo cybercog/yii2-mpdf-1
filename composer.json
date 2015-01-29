@@ -1,0 +1,30 @@
+{
+    "name": "makari4/yii2-mpdf",
+    "version": "1.0.0",
+    "type": "yii2-extension",
+    "description": "The mPdf integration for the Yii2 framework",
+    "keywords": ["yii2", "extension", "mpdf", "pdf","html"],
+    "homepage": "https://github.com/makari4/yii2-mpdf",
+    "license": "BSD-3-Clause",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:makari4/mpdf.git"
+        }
+    ],
+    "authors": [
+        {
+            "name": "Tony"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "makari4/mpdf":"6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "makari4\\mpdf\\": ""
+        }
+    }
+
+}
