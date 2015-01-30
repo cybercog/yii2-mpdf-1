@@ -78,6 +78,28 @@ class Pdf extends Component
             $this->generator->fontdata = $this->fontData;
         }
         $this->generator->fontdata = array_merge($this->generator->fontdata,$this->additionalFontData);
+        $this->updateAvailableFonts();
+    }
+
+    protected function updateAvailableFonts()
+    {
+        $this->generator->available_unifonts = array();
+        foreach ($this->generator->fontdata AS $f => $fs) {
+            if (isset($fs['R']) && $fs['R']) {
+                $this->generator->available_unifonts[] = $f;
+            }
+            if (isset($fs['B']) && $fs['B']) {
+                $this->generator->available_unifonts[] = $f . 'B';
+            }
+            if (isset($fs['I']) && $fs['I']) {
+                $this->generator->available_unifonts[] = $f . 'I';
+            }
+            if (isset($fs['BI']) && $fs['BI']) {
+                $this->generator->available_unifonts[] = $f . 'BI';
+            }
+        }
+
+        $this->generator->default_available_fonts = $this->generator->available_unifonts;
     }
 
     /**
